@@ -34,10 +34,10 @@ public type SubscriptionCreated record {|
 public isolated client class AdminClient {
 
     isolated function init(string connectionString) returns Error? {
-        check self.externInit();
+        check self.externInit(connectionString);
     }
 
-    private isolated function externInit() returns Error? =
+    private isolated function externInit(string connectionString) returns Error? =
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
