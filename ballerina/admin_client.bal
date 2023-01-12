@@ -13,3 +13,52 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+import ballerina/jballerina.java;
+
+public type CommonResponse record {};
+
+public type TopicCreated record {|
+    *CommonResponse;
+    string topicName;
+    string status;
+    string userMetaData;
+|};
+
+public type SubscriptionCreated record {|
+    *CommonResponse;
+    string status;
+    string userMetaData;
+|};
+
+public isolated client class AdminClient {
+
+    isolated function init(string connectionString) returns Error? {
+        check self.externInit();
+    }
+
+    private isolated function externInit() returns Error? =
+    @java:Method {
+        'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
+    } external;
+
+    isolated function createTopic(string topic) returns TopicCreated|Error = 
+    @java:Method {
+        'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
+    } external;    
+
+    isolated function deleteTopic(string topic) returns Error? = 
+    @java:Method {
+        'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
+    } external;
+
+    isolated function createSubscription(string topic, string subscription) returns SubscriptionCreated|Error =
+    @java:Method {
+        'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
+    } external;
+
+    isolated function deleteSubscription(string topic, string subscription) returns Error? = 
+    @java:Method {
+        'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
+    } external;
+}
