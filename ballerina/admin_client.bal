@@ -33,7 +33,7 @@ public type SubscriptionCreated record {|
 
 public isolated client class AdminClient {
 
-    isolated function init(string connectionString) returns Error? {
+    public isolated function init(string connectionString) returns Error? {
         check self.externInit(connectionString);
     }
 
@@ -42,22 +42,22 @@ public isolated client class AdminClient {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
-    isolated function createTopic(string topic) returns TopicCreated|Error = 
+    isolated remote function createTopic(string topic) returns TopicCreated|Error = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;    
 
-    isolated function deleteTopic(string topic) returns Error? = 
+    isolated remote function deleteTopic(string topic) returns Error? = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
-    isolated function createSubscription(string topic, string subscription) returns SubscriptionCreated|Error =
+    isolated remote function createSubscription(string topic, string subscription) returns SubscriptionCreated|Error =
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
-    isolated function deleteSubscription(string topic, string subscription) returns Error? = 
+    isolated remote function deleteSubscription(string topic, string subscription) returns Error? = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
