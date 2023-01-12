@@ -17,6 +17,3 @@ path = "../native/build/libs/asb-native-0.1.0-SNAPSHOT.jar"
 
 [[platform.java11.dependency]]
 path = "./lib/azure-messaging-servicebus-7.13.0.jar"
-
-[[platform.java11.dependency]]
-path = "./lib/azure-core-1.35.0.jar"
