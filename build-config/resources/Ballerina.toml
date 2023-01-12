@@ -1,0 +1,19 @@
+[package]
+org = "xlibb"
+name = "asb"
+version = "@toml.version@"
+authors = ["xlibb"]
+keywords = ["asb"]
+repository = "https://github.com/xlibb/module-asb"
+license = ["Apache-2.0"]
+distribution = "2201.3.0"
+icon = "icon.png"
+
+[[platform.java11.dependency]]
+groupId = "io.xlibb"
+artifactId = "asb-native"
+version = "@toml.version@"
+path = "../native/build/libs/asb-native-@project.version@.jar"
+
+[[platform.java11.dependency]]
+path = "./lib/azure-messaging-servicebus-@asb.version@.jar"
