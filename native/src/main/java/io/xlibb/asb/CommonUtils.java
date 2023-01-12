@@ -18,13 +18,19 @@
 
 package io.xlibb.asb;
 
-import io.ballerina.runtime.api.values.BString;
+import io.ballerina.runtime.api.creators.ErrorCreator;
+import io.ballerina.runtime.api.values.BError;
+
+import static io.ballerina.runtime.api.utils.StringUtils.fromString;
+import static io.xlibb.asb.ModuleUtils.getModule;
 
 /**
- * {@code AsbAdaptor} is the ballerina runtime adaptor for ASB administration client.
+ * {@code CommonUtils} contains the common utility methods which can be used as helper methods.
  */
-public class AsbAdminClientAdaptor {
-    public static void externInit(BString connectionString) {
-        System.out.println("Conneting to ASB");
+public final class CommonUtils {
+    public static BError createError(String errorType, String message, Throwable throwable) {
+        String constructedErrorMsg = String.format("%s: %s", message, throwable.getCause().getMessage());
+        return ErrorCreator.createError(
+                getModule(), errorType, fromString(constructedErrorMsg), null, null);
     }
 }
