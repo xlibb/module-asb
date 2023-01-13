@@ -74,3 +74,6 @@ path = "./lib/netty-handler-proxy-4.1.82.Final.jar"
 
 [[platform.java11.dependency]]
 path = "./lib/netty-codec-http2-4.1.82.Final.jar"
+
+[[platform.java11.dependency]]
+path = "./lib/reactor-netty-http-1.0.23.jar"
