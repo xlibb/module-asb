@@ -32,3 +32,6 @@ path = "./lib/jackson-dataformat-xml-2.13.4.jar"
 
 [[platform.java11.dependency]]
 path = "./lib/reactor-core-3.4.23.jar"
+
+[[platform.java11.dependency]]
+path = "./lib/reactive-streams-1.0.4.jar"
