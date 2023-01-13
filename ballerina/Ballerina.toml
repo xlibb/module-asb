@@ -36,3 +36,6 @@ path = "./lib/reactive-streams-1.0.4.jar"
 [[platform.java11.dependency]]
 path = "./lib/jackson-core-2.13.4.jar"
 
+[[platform.java11.dependency]]
+path = "./lib/jackson-databind-2.13.4.2.jar"
+
