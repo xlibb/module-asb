@@ -39,3 +39,5 @@ path = "./lib/jackson-core-2.13.4.jar"
 [[platform.java11.dependency]]
 path = "./lib/jackson-databind-2.13.4.2.jar"
 
+[[platform.java11.dependency]]
+path = "./lib/jackson-datatype-jsr310-2.13.4.jar"
