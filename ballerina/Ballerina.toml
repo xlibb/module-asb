@@ -31,7 +31,8 @@ path = "./lib/azure-core-http-netty-1.12.7.jar"
 path = "./lib/jackson-dataformat-xml-2.13.4.jar"
 
 [[platform.java11.dependency]]
-path = "./lib/reactor-core-3.4.23.jar"
+path = "./lib/reactive-streams-1.0.4.jar"
 
 [[platform.java11.dependency]]
-path = "./lib/reactive-streams-1.0.4.jar"
+path = "./lib/jackson-core-2.13.4.jar"
+
