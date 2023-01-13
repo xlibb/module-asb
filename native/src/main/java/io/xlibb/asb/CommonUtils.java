@@ -29,8 +29,7 @@ import static io.xlibb.asb.ModuleUtils.getModule;
  */
 public final class CommonUtils {
     public static BError createError(String errorType, String message, Throwable throwable) {
-        String constructedErrorMsg = String.format("%s: %s", message, throwable.getCause().getMessage());
-        return ErrorCreator.createError(
-                getModule(), errorType, fromString(constructedErrorMsg), null, null);
+        BError cause = ErrorCreator.createError(throwable);
+        return ErrorCreator.createError(getModule(), errorType, fromString(message), cause, null);
     }
 }

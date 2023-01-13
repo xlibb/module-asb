@@ -23,10 +23,6 @@ plugins {
 
 ext.ballerinaLangVersion = project.ballerinaLangVersion
 ext.asbVersion = project.asbVersion
-ext.azureCoreVersion = project.azureCoreVersion
-ext.azureCodeAMPQVersion = project.azureCodeAMPQVersion
-ext.azureHttpNettyVersion = project.azureHttpNettyVersion
-ext.jacksonDataformatXmlVersion = project.jacksonDataformatXmlVersion
 
 allprojects {
     group = project.group
@@ -77,6 +73,8 @@ subprojects {
         ballerinaStdLibs "io.ballerina.stdlib:observe-ballerina:${observeVersion}"
         ballerinaStdLibs "io.ballerina:observe-ballerina:${observeInternalVersion}"
     }
+
+    task allDeps(type: DependencyReportTask) {}
 }
 
 def moduleVersion = project.version.replace("-SNAPSHOT", "")
