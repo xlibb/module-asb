@@ -23,6 +23,10 @@ plugins {
 
 ext.ballerinaLangVersion = project.ballerinaLangVersion
 ext.asbVersion = project.asbVersion
+ext.azureCoreVersion = project.azureCoreVersion
+ext.azureCodeAMPQVersion = project.azureCodeAMPQVersion
+ext.azureHttpNettyVersion = project.azureHttpNettyVersion
+ext.jacksonDataformatXmlVersion = project.jacksonDataformatXmlVersion
 
 allprojects {
     group = project.group
