@@ -15,9 +15,10 @@
 // under the License.
 
 import ballerina/io;
+import ballerina/os;
 import ballerina/test;
 
-configurable string connectionString = ?;
+configurable string connectionString = os:getEnv("CONNECTION_STRING");
 
 const string TOPIC_NAME = "topic-1";
 const string SUBSCRIPTION_NAME = "sub-1";
