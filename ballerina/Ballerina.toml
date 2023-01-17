@@ -238,7 +238,7 @@ path = "./lib/reactor-netty-http-1.1.2.jar"
 groupId = "org.apache.qpid"
 artifactId = "proton-j"
 version = "0.34.0"
-path = "./lib/proton-j-0.33.8.jar"
+path = "./lib/proton-j-0.34.0.jar"
 
 # Reactive streams dependencies
 [[platform.java11.dependency]]
