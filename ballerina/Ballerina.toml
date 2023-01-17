@@ -34,6 +34,12 @@ version = "2.8.0"
 path = "./lib/azure-core-amqp-2.8.0.jar"
 
 [[platform.java11.dependency]]
+groupId = "org.apache.qpid"
+artifactId = "proton-j"
+version = "0.33.8"
+path = "./lib/proton-j-0.33.8.jar"
+
+[[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-core-http-netty"
 version = "1.12.7"
