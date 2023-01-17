@@ -99,67 +99,67 @@ dependencies {
     }
 
     /* Netty dependencies */
-    externalJars(group: 'io.netty', name: 'netty-buffer', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-buffer', version: "${nettyVersion}") {
         transitive = false
     }
-    externalJars(group: 'io.netty', name: 'netty-codec', version: "4.1.82.Final") {
-        transitive = false
-    }
-    // this wan in `4.1.81.Final`
-    externalJars(group: 'io.netty', name: 'netty-codec-dns', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-codec-http', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-codec-http2', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-codec-socks', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-common', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-handler', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-handler-proxy', version: "4.1.82.Final") {
-        transitive = false
-    }
-    externalJars(group: 'io.netty', name: 'netty-resolver', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-codec', version: "${nettyVersion}") {
         transitive = false
     }
     // this wan in `4.1.81.Final`
-    externalJars(group: 'io.netty', name: 'netty-resolver-dns', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-codec-dns', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http2', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-socks', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-common', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler-proxy', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-resolver', version: "${nettyVersion}") {
         transitive = false
     }
     // this wan in `4.1.81.Final`
-    externalJars(group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns', version: "${nettyVersion}") {
         transitive = false
     }
     // this wan in `4.1.81.Final`
-    externalJars 'io.netty:netty-resolver-dns-native-macos:4.1.82.Final:osx-x86_64'
-    externalJars(group: 'io.netty', name: 'netty-transport', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: "${nettyVersion}") {
         transitive = false
     }
-    externalJars(group: 'io.netty', name: 'netty-transport-classes-epoll', version: "4.1.82.Final") {
+    // this wan in `4.1.81.Final`
+    externalJars "io.netty:netty-resolver-dns-native-macos:${nettyVersion}:osx-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport', version: "${nettyVersion}") {
         transitive = false
     }
-    externalJars 'io.netty:netty-transport-native-epoll:4.1.82.Final:linux-x86_64'
-    externalJars(group: 'io.netty', name: 'netty-transport-classes-kqueue', version: "4.1.82.Final") {
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-epoll', version: "${nettyVersion}") {
         transitive = false
     }
-    externalJars 'io.netty:netty-transport-native-kqueue:4.1.82.Final:osx-x86_64'
-    externalJars(group: 'io.netty', name: 'netty-transport-native-unix-common', version: "4.1.82.Final") {
+    externalJars "io.netty:netty-transport-native-epoll:${nettyVersion}:linux-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-kqueue', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars "io.netty:netty-transport-native-kqueue:${nettyVersion}:osx-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport-native-unix-common', version: "${nettyVersion}") {
         transitive = false
     }
 
     /* Netty tcnative dependencies */
-    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "2.0.54.Final") {
+    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "${nettyTcNativeVersion}") {
         transitive = false
     }
-    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "2.0.54.Final") {
+    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "${nettyTcNativeVersion}") {
         transitive = false
     }
     externalJars 'io.netty:netty-tcnative-boringssl-static::windows-x86_64'
@@ -196,12 +196,16 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreVersion = project.azureCoreVersion
         def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
+        def stdlibDependentNettyVersion = project.nettyVersion
+        def stdlibDependentNettyTcNativeVersion = project.nettyTcNativeVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
         newConfig = newConfig.replace("@toml.version@", tomlVersion)
         newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
         newConfig = newConfig.replace("@azure.core.version@", stdlibDependentAzureCoreVersion)
         newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
+        newConfig = newConfig.replace("@netty.version@", nettyVersion)
+        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcNativeVersion)
         ballerinaTomlFile.text = newConfig
     }
 }

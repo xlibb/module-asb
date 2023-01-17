@@ -26,6 +26,8 @@ ext.asbVersion = project.asbVersion
 ext.azureCoreVersion = project.azureCoreVersion
 ext.azureCoreAmqpVersion = project.azureCoreAmqpVersion
 ext.azureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
+ext.nettyVersion = project.nettyVersion
+ext.nettyTcNativeVersion = project.nettyTcNativeVersion
 
 allprojects {
     group = project.group
