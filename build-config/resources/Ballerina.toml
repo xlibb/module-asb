@@ -40,6 +40,12 @@ artifactId = "azure-core-http-netty"
 version = "@azure.core.http.netty.version@"
 path = "./lib/azure-core-http-netty-@azure.core.http.netty.version@.jar"
 
+[[platform.java11.dependency]]
+groupId = "com.microsoft.azure"
+artifactId = "qpid-proton-j-extensions"
+version = "1.2.4"
+path = "./lib/qpid-proton-j-extensions-1.2.4.jar"
+
 # Jackson dependencies
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
@@ -212,27 +218,27 @@ path = "./lib/netty-tcnative-boringssl-static-@netty.tcnative.version@-osx-x86_6
 [[platform.java11.dependency]]
 groupId = "io.projectreactor"
 artifactId = "reactor-core"
-version = "3.4.23"
-path = "./lib/reactor-core-3.4.23.jar"
+version = "3.5.2"
+path = "./lib/reactor-core-3.5.2.jar"
 
 [[platform.java11.dependency]]
 groupId = "io.projectreactor.netty"
 artifactId = "reactor-netty-core"
-version = "1.0.23"
-path = "./lib/reactor-netty-core-1.0.23.jar"
+version = "1.1.2"
+path = "./lib/reactor-netty-core-1.1.2.jar"
 
 [[platform.java11.dependency]]
 groupId = "io.projectreactor.netty"
 artifactId = "reactor-netty-http"
-version = "1.0.23"
-path = "./lib/reactor-netty-http-1.0.23.jar"
+version = "1.1.2"
+path = "./lib/reactor-netty-http-1.1.2.jar"
 
 # Apache proton-j dependencies
 [[platform.java11.dependency]]
 groupId = "org.apache.qpid"
 artifactId = "proton-j"
-version = "0.33.8"
-path = "./lib/proton-j-0.33.8.jar"
+version = "0.34.0"
+path = "./lib/proton-j-0.34.0.jar"
 
 # Reactive streams dependencies
 [[platform.java11.dependency]]
