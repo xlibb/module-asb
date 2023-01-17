@@ -82,19 +82,19 @@ dependencies {
     }
     
     /* Jackson dependencies */
-    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "2.13.4") {
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "${jacksonVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "2.13.4") {
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "${jacksonVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.13.4.2") {
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacksonDatabindVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "2.13.4") {
+    externalJars(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "${jacksonVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: "2.13.4") {
+    externalJars(group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: "${jacksonVersion}") {
         transitive = false
     }
 
@@ -198,6 +198,8 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
         def stdlibDependentNettyVersion = project.nettyVersion
         def stdlibDependentNettyTcNativeVersion = project.nettyTcNativeVersion
+        def stdlibDependentJacksonVersion = project.jacksonVersion
+        def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
         newConfig = newConfig.replace("@toml.version@", tomlVersion)
         newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
@@ -206,6 +208,8 @@ task updateTomlFiles {
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
         newConfig = newConfig.replace("@netty.version@", nettyVersion)
         newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcNativeVersion)
+        newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
+        newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
         ballerinaTomlFile.text = newConfig
     }
 }
