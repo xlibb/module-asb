@@ -168,13 +168,13 @@ dependencies {
     externalJars 'io.netty:netty-tcnative-boringssl-static::osx-x86_64'
 
     /* Project reactor dependencies */
-    externalJars(group: 'io.projectreactor', name: 'reactor-core', version: "3.5.2") {
+    externalJars(group: 'io.projectreactor', name: 'reactor-core', version: "${reactorCoreVersion}") {
         transitive = false
     }    
-    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-core', version: "1.1.2") {
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-core', version: "${reactorNettyVersion}") {
         transitive = false
     }
-    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-http', version: "1.1.2") {
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-http', version: "${reactorNettyVersion}") {
         transitive = false
     }
 
@@ -184,7 +184,7 @@ dependencies {
     }  
 
     /* Rective streams dependencies */
-    externalJars(group: 'org.reactivestreams', name: 'reactive-streams', version: "1.0.4") {
+    externalJars(group: 'org.reactivestreams', name: 'reactive-streams', version: "${reactiveStreamsVersion}") {
         transitive = false
     }    
 }
@@ -195,20 +195,28 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreVersion = project.azureCoreVersion
         def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
-        def stdlibDependentNettyVersion = project.nettyVersion
-        def stdlibDependentNettyTcnativeVersion = project.nettyTcnativeVersion
         def stdlibDependentJacksonVersion = project.jacksonVersion
         def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
+        def stdlibDependentNettyVersion = project.nettyVersion
+        def stdlibDependentNettyTcnativeVersion = project.nettyTcnativeVersion
+
+        def stdlibDependentReactorCoreVersion = project.reactorCoreVersion
+        def stdlibDependentReactorNettyVersion = project.reactorNettyVersion
+        def stdlibDependentReactiveStreamsVersion = project.reactiveStreamsVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
         newConfig = newConfig.replace("@toml.version@", tomlVersion)
         newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
         newConfig = newConfig.replace("@azure.core.version@", stdlibDependentAzureCoreVersion)
         newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
-        newConfig = newConfig.replace("@netty.version@", nettyVersion)
-        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcnativeVersion)
         newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
         newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
+        newConfig = newConfig.replace("@netty.version@", nettyVersion)
+        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcnativeVersion)
+
+        newConfig = newConfig.replace("@reactor.core.version@", stdlibDependentReactorCoreVersion)
+        newConfig = newConfig.replace("@reactor.netty.version@", stdlibDependentReactorNettyVersion)
+        newConfig = newConfig.replace("@reactive.streams.version@", stdlibDependentReactiveStreamsVersion)
         ballerinaTomlFile.text = newConfig
     }
 }

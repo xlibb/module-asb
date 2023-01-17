@@ -218,20 +218,20 @@ path = "./lib/netty-tcnative-boringssl-static-@netty.tcnative.version@-osx-x86_6
 [[platform.java11.dependency]]
 groupId = "io.projectreactor"
 artifactId = "reactor-core"
-version = "3.5.2"
-path = "./lib/reactor-core-3.5.2.jar"
+version = "@reactor.core.version@"
+path = "./lib/reactor-core-@reactor.core.version@.jar"
 
 [[platform.java11.dependency]]
 groupId = "io.projectreactor.netty"
 artifactId = "reactor-netty-core"
-version = "1.1.2"
-path = "./lib/reactor-netty-core-1.1.2.jar"
+version = "@reactor.netty.version@"
+path = "./lib/reactor-netty-core-@reactor.netty.version@.jar"
 
 [[platform.java11.dependency]]
 groupId = "io.projectreactor.netty"
 artifactId = "reactor-netty-http"
-version = "1.1.2"
-path = "./lib/reactor-netty-http-1.1.2.jar"
+version = "@reactor.netty.version@"
+path = "./lib/reactor-netty-http-@reactor.netty.version@.jar"
 
 # Apache proton-j dependencies
 [[platform.java11.dependency]]
@@ -244,5 +244,5 @@ path = "./lib/proton-j-0.34.0.jar"
 [[platform.java11.dependency]]
 groupId = "org.reactivestreams"
 artifactId = "reactive-streams"
-version = "1.0.4"
-path = "./lib/reactive-streams-1.0.4.jar"
+version = "@reactive.streams.version@"
+path = "./lib/reactive-streams-@reactive.streams.version@.jar"

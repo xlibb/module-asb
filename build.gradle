@@ -26,10 +26,13 @@ ext.asbVersion = project.asbVersion
 ext.azureCoreVersion = project.azureCoreVersion
 ext.azureCoreAmqpVersion = project.azureCoreAmqpVersion
 ext.azureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
-ext.nettyVersion = project.nettyVersion
-ext.nettyTcnativeVersion = project.nettyTcnativeVersion
 ext.jacksonVersion = project.jacksonVersion
 ext.jacksonDatabindVersion = project.jacksonDatabindVersion
+ext.nettyVersion = project.nettyVersion
+ext.nettyTcnativeVersion = project.nettyTcnativeVersion
+ext.reactorCoreVersion = project.reactorCoreVersion
+ext.reactorNettyVersion = project.reactorNettyVersion
+ext.reactiveStreamsVersion = project.reactiveStreamsVersion
 
 allprojects {
     group = project.group
