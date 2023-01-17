@@ -62,6 +62,132 @@ ballerina {
     testCoverageParam = "--code-coverage --coverage-format=xml --includes=io.xlibb.asb.*:xlibb.asb*"
 }
 
+configurations {
+    externalJars
+}
+
+dependencies {
+    /* Azure dependencies */
+    externalJars(group: 'com.azure', name: 'azure-messaging-servicebus', version: "7.13.0") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core', version: "1.34.0") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core-amqp', version: "2.8.0") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core-http-netty', version: "1.12.7") {
+        transitive = false
+    }
+    
+    /* Jackson dependencies */
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "2.13.4") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "2.13.4") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.13.4.2") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "2.13.4") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: "2.13.4") {
+        transitive = false
+    }
+
+    /* Netty dependencies */
+    externalJars(group: 'io.netty', name: 'netty-buffer', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec', version: "4.1.82.Final") {
+        transitive = false
+    }
+    // this wan in `4.1.81.Final`
+    externalJars(group: 'io.netty', name: 'netty-codec-dns', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http2', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-socks', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-common', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler-proxy', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-resolver', version: "4.1.82.Final") {
+        transitive = false
+    }
+    // this wan in `4.1.81.Final`
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns', version: "4.1.82.Final") {
+        transitive = false
+    }
+    // this wan in `4.1.81.Final`
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: "4.1.82.Final") {
+        transitive = false
+    }
+    // this wan in `4.1.81.Final`
+    externalJars 'io.netty:netty-resolver-dns-native-macos:4.1.82.Final:osx-x86_64'
+    externalJars(group: 'io.netty', name: 'netty-transport', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-epoll', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars 'io.netty:netty-transport-native-epoll:4.1.82.Final:linux-x86_64'
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-kqueue', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars 'io.netty:netty-transport-native-kqueue:4.1.82.Final:osx-x86_64'
+    externalJars(group: 'io.netty', name: 'netty-transport-native-unix-common', version: "4.1.82.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "2.0.54.Final") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "2.0.54.Final") {
+        transitive = false
+    }
+    externalJars 'io.netty:netty-tcnative-boringssl-static::windows-x86_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::linux-aarch_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::linux-x86_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::osx-aarch_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::osx-x86_64'
+
+    /* Project reactor dependencies */
+    externalJars(group: 'io.projectreactor', name: 'reactor-core', version: "3.4.23") {
+        transitive = false
+    }    
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-core', version: "1.0.23") {
+        transitive = false
+    }
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-http', version: "1.0.23") {
+        transitive = false
+    }
+
+    /* Apache proton-j dependencies */
+    externalJars(group: 'org.apache.qpid', name: 'proton-j', version: "0.33.8") {
+        transitive = false
+    }  
+
+    /* Rective streams dependencies */
+    externalJars(group: 'org.reactivestreams', name: 'reactive-streams', version: "1.0.4") {
+        transitive = false
+    }    
+}
+
 task updateTomlFiles {
     doLast {
         def stdlibDependentAsbVersion = project.asbVersion
