@@ -191,8 +191,15 @@ dependencies {
 task updateTomlFiles {
     doLast {
         def stdlibDependentAsbVersion = project.asbVersion
+        def stdlibDependentAzureCoreVersion = project.azureCoreVersion
+        def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
+        def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
         newConfig = newConfig.replace("@toml.version@", tomlVersion)
+        newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
+        newConfig = newConfig.replace("@azure.core.version@", stdlibDependentAzureCoreVersion)
+        newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
+        newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
         ballerinaTomlFile.text = newConfig
     }
 }

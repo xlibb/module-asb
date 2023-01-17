@@ -19,26 +19,26 @@ path = "../native/build/libs/asb-native-@project.version@.jar"
 [[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-messaging-servicebus"
-version = "7.13.0"
-path = "./lib/azure-messaging-servicebus-7.13.0.jar"
+version = "@asb.version@"
+path = "./lib/azure-messaging-servicebus-@asb.version@.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-core"
-version = "1.34.0"
-path = "./lib/azure-core-1.34.0.jar"
+version = "@azure.core.version@"
+path = "./lib/azure-core-@azure.core.version@.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-core-amqp"
-version = "2.8.0"
-path = "./lib/azure-core-amqp-2.8.0.jar"
+version = "@azure.core.amqp.version@"
+path = "./lib/azure-core-amqp-@azure.core.amqp.version@.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-core-http-netty"
-version = "1.12.7"
-path = "./lib/azure-core-http-netty-1.12.7.jar"
+version = "@azure.core.http.netty.version@"
+path = "./lib/azure-core-http-netty-@azure.core.http.netty.version@.jar"
 
 # Jackson dependencies
 [[platform.java11.dependency]]
