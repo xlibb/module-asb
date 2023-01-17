@@ -68,16 +68,16 @@ configurations {
 
 dependencies {
     /* Azure dependencies */
-    externalJars(group: 'com.azure', name: 'azure-messaging-servicebus', version: "7.13.0") {
+    externalJars(group: 'com.azure', name: 'azure-messaging-servicebus', version: "${asbVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.azure', name: 'azure-core', version: "1.34.0") {
+    externalJars(group: 'com.azure', name: 'azure-core', version: "${azureCoreVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.azure', name: 'azure-core-amqp', version: "2.8.0") {
+    externalJars(group: 'com.azure', name: 'azure-core-amqp', version: "${azureCoreAmqpVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.azure', name: 'azure-core-http-netty', version: "1.12.7") {
+    externalJars(group: 'com.azure', name: 'azure-core-http-netty', version: "${azureCoreHttpNettyVersion}") {
         transitive = false
     }
     
@@ -154,6 +154,8 @@ dependencies {
     externalJars(group: 'io.netty', name: 'netty-transport-native-unix-common', version: "4.1.82.Final") {
         transitive = false
     }
+
+    /* Netty tcnative dependencies */
     externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "2.0.54.Final") {
         transitive = false
     }
