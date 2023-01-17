@@ -34,12 +34,6 @@ version = "2.8.0"
 path = "./lib/azure-core-amqp-2.8.0.jar"
 
 [[platform.java11.dependency]]
-groupId = "org.apache.qpid"
-artifactId = "proton-j"
-version = "0.33.8"
-path = "./lib/proton-j-0.33.8.jar"
-
-[[platform.java11.dependency]]
 groupId = "com.azure"
 artifactId = "azure-core-http-netty"
 version = "1.12.7"
@@ -80,6 +74,18 @@ groupId = "com.fasterxml.woodstox"
 artifactId = "woodstox-core"
 version = "6.4.0"
 path = "./lib/woodstox-core-6.4.0.jar"
+
+[[platform.java11.dependency]]
+groupId = "io.netty"
+artifactId = "netty-handler"
+version = "4.1.82.Final"
+path = "./lib/netty-handler-4.1.82.Final.jar"
+
+[[platform.java11.dependency]]
+groupId = "org.apache.qpid"
+artifactId = "proton-j"
+version = "0.33.8"
+path = "./lib/proton-j-0.33.8.jar"
 
 [[platform.java11.dependency]]
 groupId = "org.reactivestreams"
