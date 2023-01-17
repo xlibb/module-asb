@@ -105,7 +105,6 @@ dependencies {
     externalJars(group: 'io.netty', name: 'netty-codec', version: "${nettyVersion}") {
         transitive = false
     }
-    // this wan in `4.1.81.Final`
     externalJars(group: 'io.netty', name: 'netty-codec-dns', version: "${nettyVersion}") {
         transitive = false
     }
@@ -130,15 +129,12 @@ dependencies {
     externalJars(group: 'io.netty', name: 'netty-resolver', version: "${nettyVersion}") {
         transitive = false
     }
-    // this wan in `4.1.81.Final`
     externalJars(group: 'io.netty', name: 'netty-resolver-dns', version: "${nettyVersion}") {
         transitive = false
     }
-    // this wan in `4.1.81.Final`
     externalJars(group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: "${nettyVersion}") {
         transitive = false
     }
-    // this wan in `4.1.81.Final`
     externalJars "io.netty:netty-resolver-dns-native-macos:${nettyVersion}:osx-x86_64"
     externalJars(group: 'io.netty', name: 'netty-transport', version: "${nettyVersion}") {
         transitive = false
