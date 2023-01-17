@@ -214,6 +214,25 @@ path = "./lib/netty-tcnative-boringssl-static-2.0.54.Final-osx-aarch_64.jar"
 [[platform.java11.dependency]]
 path = "./lib/netty-tcnative-boringssl-static-2.0.54.Final-osx-x86_64.jar"
 
+# Project reactor dependencies
+[[platform.java11.dependency]]
+groupId = "io.projectreactor"
+artifactId = "reactor-core"
+version = "3.4.23"
+path = "./lib/reactor-core-3.4.23.jar"
+
+[[platform.java11.dependency]]
+groupId = "io.projectreactor.netty"
+artifactId = "reactor-netty-core"
+version = "1.0.23"
+path = "./lib/reactor-netty-core-1.0.23.jar"
+
+[[platform.java11.dependency]]
+groupId = "io.projectreactor.netty"
+artifactId = "reactor-netty-http"
+version = "1.0.23"
+path = "./lib/reactor-netty-http-1.0.23.jar"
+
 # Apache proton-j dependencies
 [[platform.java11.dependency]]
 groupId = "org.apache.qpid"
