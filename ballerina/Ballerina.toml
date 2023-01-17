@@ -157,6 +157,12 @@ path = "./lib/netty-resolver-dns-classes-macos-4.1.82.Final.jar"
 [[platform.java11.dependency]]
 path = "./lib/netty-resolver-dns-native-macos-4.1.82.Final-osx-x86_64.jar"
 
+[[platform.java11.dependency]]
+groupId = "io.netty"
+artifactId = "netty-transport"
+version = "4.1.82.Final"
+path = "./lib/netty-transport-4.1.82.Final.jar"
+
 # Apache proton-j dependencies
 [[platform.java11.dependency]]
 groupId = "org.apache.qpid"
