@@ -44,26 +44,26 @@ path = "./lib/azure-core-http-netty-1.12.8.jar"
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-annotations"
-version = "2.13.4"
-path = "./lib/jackson-annotations-2.13.4.jar"
+version = "2.14.1"
+path = "./lib/jackson-annotations-2.14.1.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-core"
-version = "2.13.4"
-path = "./lib/jackson-core-2.13.4.jar"
+version = "2.14.1"
+path = "./lib/jackson-core-2.14.1.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-databind"
-version = "2.13.4.2"
-path = "./lib/jackson-databind-2.13.4.2.jar"
+version = "2.14.1"
+path = "./lib/jackson-databind-2.14.1.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.datatype"
 artifactId = "jackson-datatype-jsr310"
-version = "2.13.4"
-path = "./lib/jackson-datatype-jsr310-2.13.4.jar"
+version = "2.14.1"
+path = "./lib/jackson-datatype-jsr310-2.14.1.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.dataformat"
