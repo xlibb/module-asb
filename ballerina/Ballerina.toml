@@ -180,6 +180,7 @@ artifactId = "netty-transport-native-unix-common"
 version = "4.1.82.Final"
 path = "./lib/netty-transport-native-unix-common-4.1.82.Final.jar"
 
+# Netty tcnative dependencies
 [[platform.java11.dependency]]
 groupId = "io.netty"
 artifactId = "netty-tcnative-classes"
