@@ -130,6 +130,12 @@ artifactId = "netty-handler"
 version = "4.1.82.Final"
 path = "./lib/netty-handler-4.1.82.Final.jar"
 
+[[platform.java11.dependency]]
+groupId = "io.netty"
+artifactId = "netty-handler-proxy"
+version = "4.1.82.Final"
+path = "./lib/netty-handler-proxy-4.1.82.Final.jar"
+
 # Apache proton-j dependencies
 [[platform.java11.dependency]]
 groupId = "org.apache.qpid"
