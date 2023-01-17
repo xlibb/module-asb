@@ -43,8 +43,8 @@ path = "./lib/azure-core-http-netty-@azure.core.http.netty.version@.jar"
 [[platform.java11.dependency]]
 groupId = "com.microsoft.azure"
 artifactId = "qpid-proton-j-extensions"
-version = "1.2.4"
-path = "./lib/qpid-proton-j-extensions-1.2.4.jar"
+version = "@azure.qpid.protonj.version@"
+path = "./lib/qpid-proton-j-extensions-@azure.qpid.protonj.version@.jar"
 
 # Jackson dependencies
 [[platform.java11.dependency]]
@@ -237,8 +237,8 @@ path = "./lib/reactor-netty-http-@reactor.netty.version@.jar"
 [[platform.java11.dependency]]
 groupId = "org.apache.qpid"
 artifactId = "proton-j"
-version = "0.34.0"
-path = "./lib/proton-j-0.34.0.jar"
+version = "@protonj.version@"
+path = "./lib/proton-j-@protonj.version@.jar"
 
 # Reactive streams dependencies
 [[platform.java11.dependency]]

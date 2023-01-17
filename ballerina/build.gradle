@@ -80,7 +80,7 @@ dependencies {
     externalJars(group: 'com.azure', name: 'azure-core-http-netty', version: "${azureCoreHttpNettyVersion}") {
         transitive = false
     }
-    externalJars(group: 'com.microsoft.azure', name: 'qpid-proton-j-extensions', version: '1.2.4') {
+    externalJars(group: 'com.microsoft.azure', name: 'qpid-proton-j-extensions', version: "${azureQpidProtonJExVersion}") {
         transitive = false
     }
     
@@ -179,7 +179,7 @@ dependencies {
     }
 
     /* Apache proton-j dependencies */
-    externalJars(group: 'org.apache.qpid', name: 'proton-j', version: "0.34.0") {
+    externalJars(group: 'org.apache.qpid', name: 'proton-j', version: "${protonJVersion}") {
         transitive = false
     }  
 
@@ -195,28 +195,30 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreVersion = project.azureCoreVersion
         def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
+        def stdlibDependentAzureQpidProtonJExVersion = project.azureQpidProtonJExVersion
         def stdlibDependentJacksonVersion = project.jacksonVersion
         def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
         def stdlibDependentNettyVersion = project.nettyVersion
         def stdlibDependentNettyTcnativeVersion = project.nettyTcnativeVersion
-
         def stdlibDependentReactorCoreVersion = project.reactorCoreVersion
         def stdlibDependentReactorNettyVersion = project.reactorNettyVersion
         def stdlibDependentReactiveStreamsVersion = project.reactiveStreamsVersion
+        def stdlibDependentProtonJVersion = project.protonJVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
         newConfig = newConfig.replace("@toml.version@", tomlVersion)
         newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
         newConfig = newConfig.replace("@azure.core.version@", stdlibDependentAzureCoreVersion)
         newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
+        newConfig = newConfig.replace("@azure.qpid.protonj.version@", stdlibDependentAzureQpidProtonJExVersion)
         newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
         newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
         newConfig = newConfig.replace("@netty.version@", nettyVersion)
         newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcnativeVersion)
-
         newConfig = newConfig.replace("@reactor.core.version@", stdlibDependentReactorCoreVersion)
         newConfig = newConfig.replace("@reactor.netty.version@", stdlibDependentReactorNettyVersion)
         newConfig = newConfig.replace("@reactive.streams.version@", stdlibDependentReactiveStreamsVersion)
+        newConfig = newConfig.replace("@protonj.version@", stdlibDependentProtonJVersion)
         ballerinaTomlFile.text = newConfig
     }
 }
