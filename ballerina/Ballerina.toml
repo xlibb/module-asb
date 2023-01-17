@@ -74,3 +74,9 @@ groupId = "com.fasterxml.woodstox"
 artifactId = "woodstox-core"
 version = "6.4.0"
 path = "./lib/woodstox-core-6.4.0.jar"
+
+[[platform.java11.dependency]]
+groupId = "org.reactivestreams"
+artifactId = "reactive-streams"
+version = "1.0.4"
+path = "./lib/reactive-streams-1.0.4.jar"
