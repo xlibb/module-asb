@@ -27,7 +27,7 @@ ext.azureCoreVersion = project.azureCoreVersion
 ext.azureCoreAmqpVersion = project.azureCoreAmqpVersion
 ext.azureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
 ext.nettyVersion = project.nettyVersion
-ext.nettyTcNativeVersion = project.nettyTcNativeVersion
+ext.nettyTcnativeVersion = project.nettyTcnativeVersion
 ext.jacksonVersion = project.jacksonVersion
 ext.jacksonDatabindVersion = project.jacksonDatabindVersion
 

@@ -156,10 +156,10 @@ dependencies {
     }
 
     /* Netty tcnative dependencies */
-    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "${nettyTcNativeVersion}") {
+    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "${nettyTcnativeVersion}") {
         transitive = false
     }
-    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "${nettyTcNativeVersion}") {
+    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "${nettyTcnativeVersion}") {
         transitive = false
     }
     externalJars 'io.netty:netty-tcnative-boringssl-static::windows-x86_64'
@@ -197,7 +197,7 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
         def stdlibDependentNettyVersion = project.nettyVersion
-        def stdlibDependentNettyTcNativeVersion = project.nettyTcNativeVersion
+        def stdlibDependentNettyTcnativeVersion = project.nettyTcnativeVersion
         def stdlibDependentJacksonVersion = project.jacksonVersion
         def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
         def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
@@ -207,7 +207,7 @@ task updateTomlFiles {
         newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
         newConfig = newConfig.replace("@netty.version@", nettyVersion)
-        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcNativeVersion)
+        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcnativeVersion)
         newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
         newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
         ballerinaTomlFile.text = newConfig
