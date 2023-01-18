@@ -1,0 +1,263 @@
+// Copyright (c) 2023, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
+//
+// WSO2 LLC. licenses this file to you under the Apache License,
+// Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+buildscript {
+    repositories {
+        maven {
+            url = 'https://maven.pkg.github.com/ballerina-platform/plugin-gradle'
+            credentials {
+                username System.getenv("packageUser")
+                password System.getenv("packagePAT")
+            }
+        }
+    }
+    dependencies {
+        classpath "io.ballerina:plugin-gradle:${project.ballerinaGradlePluginVersion}"
+    }
+}
+
+description = 'Ballerina - ASB Package'
+
+def packageName = "asb.admin"
+def packageOrg = "xlibb"
+def tomlVersion = stripBallerinaExtensionVersion("${project.version}")
+def ballerinaTomlFilePlaceHolder = new File("${project.rootDir}/build-config/resources/Ballerina.toml")
+def ballerinaTomlFile = new File("$project.projectDir/Ballerina.toml")
+
+def stripBallerinaExtensionVersion(String extVersion) {
+    if (extVersion.matches(project.ext.timestampedVersionRegex)) {
+        def splitVersion = extVersion.split('-')
+        if (splitVersion.length > 3) {
+            def strippedValues = splitVersion[0..-4]
+            return strippedValues.join('-')
+        } else {
+            return extVersion
+        }
+    } else {
+        return extVersion.replace("${project.ext.snapshotVersion}", "")
+    }
+}
+
+apply plugin: 'io.ballerina.plugin'
+
+ballerina {
+    packageOrganization = packageOrg
+    module = packageName
+    langVersion = ballerinaLangVersion
+    testCoverageParam = "--code-coverage --coverage-format=xml --includes=io.xlibb.asb.*:xlibb.asb*"
+}
+
+configurations {
+    externalJars
+}
+
+dependencies {
+    /* Azure dependencies */
+    externalJars(group: 'com.azure', name: 'azure-messaging-servicebus', version: "${asbVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core', version: "${azureCoreVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core-amqp', version: "${azureCoreAmqpVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.azure', name: 'azure-core-http-netty', version: "${azureCoreHttpNettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.microsoft.azure', name: 'qpid-proton-j-extensions', version: "${azureQpidProtonJExVersion}") {
+        transitive = false
+    }
+    
+    /* Jackson dependencies */
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "${jacksonVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "${jacksonVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacksonDatabindVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "${jacksonVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: "${jacksonVersion}") {
+        transitive = false
+    }
+
+    /* Netty dependencies */
+    externalJars(group: 'io.netty', name: 'netty-buffer', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-dns', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-http2', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-codec-socks', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-common', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-handler-proxy', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-resolver', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars "io.netty:netty-resolver-dns-native-macos:${nettyVersion}:osx-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-epoll', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars "io.netty:netty-transport-native-epoll:${nettyVersion}:linux-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport-classes-kqueue', version: "${nettyVersion}") {
+        transitive = false
+    }
+    externalJars "io.netty:netty-transport-native-kqueue:${nettyVersion}:osx-x86_64"
+    externalJars(group: 'io.netty', name: 'netty-transport-native-unix-common', version: "${nettyVersion}") {
+        transitive = false
+    }
+
+    /* Netty tcnative dependencies */
+    externalJars(group: 'io.netty', name: 'netty-tcnative-classes', version: "${nettyTcnativeVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.netty', name: 'netty-tcnative-boringssl-static', version: "${nettyTcnativeVersion}") {
+        transitive = false
+    }
+    externalJars 'io.netty:netty-tcnative-boringssl-static::windows-x86_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::linux-aarch_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::linux-x86_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::osx-aarch_64'
+    externalJars 'io.netty:netty-tcnative-boringssl-static::osx-x86_64'
+
+    /* Project reactor dependencies */
+    externalJars(group: 'io.projectreactor', name: 'reactor-core', version: "${reactorCoreVersion}") {
+        transitive = false
+    }    
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-core', version: "${reactorNettyVersion}") {
+        transitive = false
+    }
+    externalJars(group: 'io.projectreactor.netty', name: 'reactor-netty-http', version: "${reactorNettyVersion}") {
+        transitive = false
+    }
+
+    /* Apache proton-j dependencies */
+    externalJars(group: 'org.apache.qpid', name: 'proton-j', version: "${protonJVersion}") {
+        transitive = false
+    }  
+
+    /* Rective streams dependencies */
+    externalJars(group: 'org.reactivestreams', name: 'reactive-streams', version: "${reactiveStreamsVersion}") {
+        transitive = false
+    }    
+}
+
+task updateTomlFiles {
+    doLast {
+        def stdlibDependentAsbVersion = project.asbVersion
+        def stdlibDependentAzureCoreVersion = project.azureCoreVersion
+        def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
+        def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
+        def stdlibDependentAzureQpidProtonJExVersion = project.azureQpidProtonJExVersion
+        def stdlibDependentJacksonVersion = project.jacksonVersion
+        def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
+        def stdlibDependentNettyVersion = project.nettyVersion
+        def stdlibDependentNettyTcnativeVersion = project.nettyTcnativeVersion
+        def stdlibDependentReactorCoreVersion = project.reactorCoreVersion
+        def stdlibDependentReactorNettyVersion = project.reactorNettyVersion
+        def stdlibDependentReactiveStreamsVersion = project.reactiveStreamsVersion
+        def stdlibDependentProtonJVersion = project.protonJVersion
+        def newConfig = ballerinaTomlFilePlaceHolder.text.replace("@project.version@", project.version)
+        newConfig = newConfig.replace("@toml.version@", tomlVersion)
+        newConfig = newConfig.replace("@asb.version@", stdlibDependentAsbVersion)
+        newConfig = newConfig.replace("@azure.core.version@", stdlibDependentAzureCoreVersion)
+        newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
+        newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
+        newConfig = newConfig.replace("@azure.qpid.protonj.version@", stdlibDependentAzureQpidProtonJExVersion)
+        newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
+        newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
+        newConfig = newConfig.replace("@netty.version@", nettyVersion)
+        newConfig = newConfig.replace("@netty.tcnative.version@", stdlibDependentNettyTcnativeVersion)
+        newConfig = newConfig.replace("@reactor.core.version@", stdlibDependentReactorCoreVersion)
+        newConfig = newConfig.replace("@reactor.netty.version@", stdlibDependentReactorNettyVersion)
+        newConfig = newConfig.replace("@reactive.streams.version@", stdlibDependentReactiveStreamsVersion)
+        newConfig = newConfig.replace("@protonj.version@", stdlibDependentProtonJVersion)
+        ballerinaTomlFile.text = newConfig
+    }
+}
+
+task commitTomlFiles {
+    doLast {
+        project.exec {
+            ignoreExitValue true
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                commandLine 'cmd', '/c', "git commit -m \"[Automated] Update the native jar versions\" Ballerina.toml Dependencies.toml"
+            } else {
+                commandLine 'sh', '-c', "git commit -m '[Automated] Update the native jar versions' Ballerina.toml Dependencies.toml"
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact source: createArtifactZip, extension: 'zip'
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/xlibb/module-asb")
+            credentials {
+                username = System.getenv("publishUser")
+                password = System.getenv("publishPAT")
+            }
+        }
+    }
+}
+
+updateTomlFiles.dependsOn copyStdlibs
+
+build.dependsOn ":asb.admin-native:build"
+build.dependsOn "generatePomFileForMavenPublication"
+publishToMavenLocal.dependsOn build
+publish.dependsOn build
