@@ -23,7 +23,7 @@ configurable string connectionString = os:getEnv("CONNECTION_STRING");
 const string TOPIC_NAME = "topic-1";
 const string SUBSCRIPTION_NAME = "sub-1";
 
-final AdminClient clientEp = check new(connectionString);
+final Client clientEp = check new(connectionString);
 
 @test:Config {
     groups: ["adminClient"]

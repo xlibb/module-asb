@@ -31,7 +31,7 @@ public type SubscriptionCreated record {|
     string userMetaData;
 |};
 
-public isolated client class AdminClient {
+public isolated client class Client {
 
     public isolated function init(string connectionString) returns Error? {
         check self.externInit(connectionString);
