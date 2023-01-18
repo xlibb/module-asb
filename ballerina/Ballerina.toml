@@ -50,32 +50,32 @@ path = "./lib/qpid-proton-j-extensions-1.2.4.jar"
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-annotations"
-version = "2.10.1"
-path = "./lib/jackson-annotations-2.10.1.jar"
+version = "2.10.5"
+path = "./lib/jackson-annotations-2.10.5.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-core"
-version = "2.10.1"
-path = "./lib/jackson-core-2.10.1.jar"
+version = "2.10.5"
+path = "./lib/jackson-core-2.10.5.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.core"
 artifactId = "jackson-databind"
-version = "2.10.1"
-path = "./lib/jackson-databind-2.10.1.jar"
+version = "2.10.5"
+path = "./lib/jackson-databind-2.10.5.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.datatype"
 artifactId = "jackson-datatype-jsr310"
-version = "2.10.1"
-path = "./lib/jackson-datatype-jsr310-2.10.1.jar"
+version = "2.10.5"
+path = "./lib/jackson-datatype-jsr310-2.10.5.jar"
 
 [[platform.java11.dependency]]
 groupId = "com.fasterxml.jackson.dataformat"
 artifactId = "jackson-dataformat-xml"
-version = "2.10.1"
-path = "./lib/jackson-dataformat-xml-2.10.1.jar"
+version = "2.10.5"
+path = "./lib/jackson-dataformat-xml-2.10.5.jar"
 
 # Netty dependencies
 [[platform.java11.dependency]]
