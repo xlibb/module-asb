@@ -11,9 +11,9 @@ icon = "icon.png"
 
 [[platform.java11.dependency]]
 groupId = "io.xlibb"
-artifactId = "asb-admin-native"
+artifactId = "asb.admin-native"
 version = "0.1.0"
-path = "../native/build/libs/asb-admin-native-0.1.0-SNAPSHOT.jar"
+path = "../native/build/libs/asb.admin-native-0.1.0-SNAPSHOT.jar"
 
 # Azure dependencies
 [[platform.java11.dependency]]

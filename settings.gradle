@@ -21,13 +21,13 @@ plugins {
 }
 
 include ':checkstyle'
-include ':asb-ballerina'
-include ':asb-native'
+include ':asb.admin-ballerina'
+include ':asb.admin-native'
 // include ':asb-examples'
 
 project(':checkstyle').projectDir = file("build-config${File.separator}checkstyle")
-project(':asb-ballerina').projectDir = file('ballerina')
-project(':asb-native').projectDir = file('native')
+project(':asb.admin-ballerina').projectDir = file('ballerina')
+project(':asb.admin-native').projectDir = file('native')
 // project(':asb-examples').projectDir = file('examples')
 
 gradleEnterprise {

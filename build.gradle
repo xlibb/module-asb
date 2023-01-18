@@ -107,7 +107,7 @@ release {
 }
 
 task build {
-    dependsOn(':asb-ballerina:build')
-    dependsOn(':asb-native:build')
+    dependsOn(':asb.admin-ballerina:build')
+    dependsOn(':asb.admin-native:build')
     // dependsOn(':asb-examples:build')
 }
