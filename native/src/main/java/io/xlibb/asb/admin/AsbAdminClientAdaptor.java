@@ -22,16 +22,10 @@ import com.azure.messaging.servicebus.administration.ServiceBusAdministrationCli
 import com.azure.messaging.servicebus.administration.ServiceBusAdministrationClientBuilder;
 import com.azure.messaging.servicebus.administration.models.SubscriptionProperties;
 import com.azure.messaging.servicebus.administration.models.TopicProperties;
-import io.ballerina.runtime.api.Environment;
-import io.ballerina.runtime.api.Future;
 import io.ballerina.runtime.api.creators.ValueCreator;
-import io.ballerina.runtime.api.values.BError;
 import io.ballerina.runtime.api.values.BMap;
 import io.ballerina.runtime.api.values.BObject;
 import io.ballerina.runtime.api.values.BString;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static io.ballerina.runtime.api.utils.StringUtils.fromString;
 import static io.xlibb.asb.CommonUtils.createError;
@@ -49,9 +43,6 @@ import static io.xlibb.asb.ModuleUtils.getModule;
  * {@code AsbAdminClientAdaptor} is the ballerina runtime adaptor for ASB administration client.
  */
 public final class AsbAdminClientAdaptor {
-    private static final ExecutorService EXECUTOR_SERVICE = Executors
-            .newCachedThreadPool(new AsbAdminClientThreadFactory());
-
     public static Object externInit(BObject adminClient, BString connectionString) {
         try {
             ServiceBusAdministrationClient clientEp = new ServiceBusAdministrationClientBuilder()
@@ -64,22 +55,16 @@ public final class AsbAdminClientAdaptor {
         return null;
     }
 
-    public static Object createTopic(Environment env, BObject adminClient, BString topic) {
-        final Future balFuture = env.markAsync();
+    public static Object createTopic(BObject adminClient, BString topic) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);
-        EXECUTOR_SERVICE.execute(() -> {
-            String topicName = topic.getValue();
-            try {
-                TopicProperties topicProperties = clientEp.createTopic(topicName);
-                balFuture.complete(constructTopicCreatedRecord(topicProperties));
-            } catch (Exception e) {
-                BError balError = createError(
-                        CLIENT_INVOCATION_ERROR, String.format("failed to create ASB topic %s", topicName), e);
-                balFuture.complete(balError);
-            }
-        });
-        return null;
+        String topicName = topic.getValue();
+        try {
+            TopicProperties topicProperties = clientEp.createTopic(topicName);
+            return constructTopicCreatedRecord(topicProperties);
+        } catch (Exception e) {
+            return createError(CLIENT_INVOCATION_ERROR, String.format("failed to create ASB topic %s", topicName), e);
+        }
     }
 
     private static BMap<BString, Object> constructTopicCreatedRecord(TopicProperties properties) {
@@ -90,41 +75,31 @@ public final class AsbAdminClientAdaptor {
         return topicCreated;
     }
 
-    public static Object deleteTopic(Environment env, BObject adminClient, BString topic) {
-        final Future balFuture = env.markAsync();
+    public static Object deleteTopic(BObject adminClient, BString topic) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);
-        EXECUTOR_SERVICE.execute(() -> {
-            String topicName = topic.getValue();
-            try {
-                clientEp.deleteTopic(topicName);
-            } catch (Exception e) {
-                BError balError = createError(
-                        CLIENT_INVOCATION_ERROR, String.format("failed to delete ASB topic %s", topicName), e);
-                balFuture.complete(balError);
-            }
-            balFuture.complete(null);
-        });
+        String topicName = topic.getValue();
+        try {
+            clientEp.deleteTopic(topicName);
+        } catch (Exception e) {
+            return createError(CLIENT_INVOCATION_ERROR, String.format("failed to delete ASB topic %s", topicName), e);
+        }
         return null;
     }
 
-    public static Object createSubscription(Environment env, BObject adminClient, BString topic, BString subscription) {
-        final Future balFuture = env.markAsync();
+    public static Object createSubscription(BObject adminClient, BString topic, BString subscription) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);
-        EXECUTOR_SERVICE.execute(() -> {
-            String topicName = topic.getValue();
-            String subscriptionId = subscription.getValue();
-            try {
-                SubscriptionProperties subscriptionProperties = clientEp.createSubscription(topicName, subscriptionId);
-                balFuture.complete(constructSubscriptionCreatedRecord(subscriptionProperties));
-            } catch (Exception e) {
-                String message = String.format("failed to create ASB subscription for topic %s and subscriber %s",
-                        topicName, subscriptionId);
-                balFuture.complete(createError(CLIENT_INVOCATION_ERROR, message, e));
-            }
-        });
-        return null;
+        String topicName = topic.getValue();
+        String subscriptionId = subscription.getValue();
+        try {
+            SubscriptionProperties subscriptionProperties = clientEp.createSubscription(topicName, subscriptionId);
+            return constructSubscriptionCreatedRecord(subscriptionProperties);
+        } catch (Exception e) {
+            String message = String.format("failed to create ASB subscription for topic %s and subscriber %s",
+                    topicName, subscriptionId);
+            return createError(CLIENT_INVOCATION_ERROR, message, e);
+        }
     }
 
     private static BMap<BString, Object> constructSubscriptionCreatedRecord(SubscriptionProperties properties) {
@@ -135,22 +110,18 @@ public final class AsbAdminClientAdaptor {
         return subscriptionCreated;
     }
 
-    public static Object deleteSubscription(Environment env, BObject adminClient, BString topic, BString subscription) {
-        final Future balFuture = env.markAsync();
+    public static Object deleteSubscription(BObject adminClient, BString topic, BString subscription) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);
-        EXECUTOR_SERVICE.execute(() -> {
-            String topicName = topic.getValue();
-            String subscriptionId = subscription.getValue();
-            try {
-                clientEp.deleteSubscription(topicName, subscriptionId);
-            } catch (Exception e) {
-                String message = String.format("failed to delete ASB subscription for topic %s and subscriber %s",
-                        topicName, subscriptionId);
-                balFuture.complete(createError(CLIENT_INVOCATION_ERROR, message, e));
-            }
-            balFuture.complete(null);
-        });
+        String topicName = topic.getValue();
+        String subscriptionId = subscription.getValue();
+        try {
+            clientEp.deleteSubscription(topicName, subscriptionId);
+        } catch (Exception e) {
+            String message = String.format("failed to delete ASB subscription for topic %s and subscriber %s",
+                    topicName, subscriptionId);
+            return createError(CLIENT_INVOCATION_ERROR, message, e);
+        }
         return null;
     }
 }

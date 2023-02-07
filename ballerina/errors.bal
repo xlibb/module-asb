@@ -14,11 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-# Represents a ASB administration distinct error.
 public type Error distinct error;
 
-# Represents ASB administration client initialization error.
 public type ClientInitializationError distinct Error;
-
-# Represents ASB administration client remote method invocation error.
 public type ClientInvocationError distinct Error;
