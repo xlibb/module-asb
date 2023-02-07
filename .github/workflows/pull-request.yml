@@ -24,7 +24,9 @@ jobs:
                     packageUser: ${{ github.actor }}
                     packagePAT: ${{ secrets.GITHUB_TOKEN }}
                     CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
-                run: ./gradlew build --no-daemon --scan
+                run: | 
+                    echo "$CONNECTION_STRING"
+                    ./gradlew build --no-daemon --scan
 
             -   name: Generate Codecov Report
                 uses: codecov/codecov-action@v2
