@@ -16,23 +16,36 @@
 
 import ballerina/jballerina.java;
 
-public type CommonResponse record {};
-
+# Record to represent the ASB topic properties.
+# 
+# + topicName - Name of the topic
+# + status - Current status of the ASB topic resource
+# + userMetaData - Additional metadata regarding the ASB topic reource
 public type TopicCreated record {|
-    *CommonResponse;
     string topicName;
     string status;
     string userMetaData;
 |};
 
+# Record to represent the ASB subscription properties.
+# 
+# + status - Current status of the ASB subscription resource
+# + userMetaData - Additional metadata regarding the ASB subscription reource
 public type SubscriptionCreated record {|
-    *CommonResponse;
     string status;
     string userMetaData;
 |};
 
+# Azure SDK based client for Azure service bus administration.
 public isolated client class Client {
 
+    # Initializes the `asb.admin:Client`.
+    # ```ballerina
+    # asb.admin:Client adminClient = check new("connectionString");
+    # ```
+    # 
+    # + connectionString - Azure connection string for the service bus resource
+    # + return - The `asb.admin:Client` or an `asb.admin:Error` if the initialization failed
     public isolated function init(string connectionString) returns Error? {
         check self.externInit(connectionString);
     }
@@ -42,21 +55,39 @@ public isolated client class Client {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
+    # Creates an ASB `topic` in the service bus resource.
+    # 
+    # + topic - Name of the topic
+    # + return - A `asb.admin:TopicCreated` for successful topic creation or an `asb.admin:Error`
     isolated remote function createTopic(string topic) returns TopicCreated|Error = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;    
 
+    # Deletes an ASB `topic` from the service bus resource.
+    # 
+    # + topic - Name of the topic
+    # + return - An `asb.admin:Error` if there is an exception during the method execution
     isolated remote function deleteTopic(string topic) returns Error? = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
+    # Creates an ASB `subscription` in the service bus resource.
+    # 
+    # + topic - Name of the topic
+    # + subscription - Name of the subscription
+    # + return - A `asb.admin:SubscriptionCreated` for successful topic creation or an `asb.admin:Error`
     isolated remote function createSubscription(string topic, string subscription) returns SubscriptionCreated|Error =
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
     } external;
 
+    # Deletes an ASB `subscription` from the service bus resource.
+    # 
+    # + topic - Name of the topic
+    # + subscription - Name of the subscription
+    # + return - An `asb.admin:Error` if there is an exception during the method execution
     isolated remote function deleteSubscription(string topic, string subscription) returns Error? = 
     @java:Method {
         'class: "io.xlibb.asb.admin.AsbAdminClientAdaptor"
