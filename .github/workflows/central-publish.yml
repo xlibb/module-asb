@@ -41,4 +41,5 @@ jobs:
                     packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
                     packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
                     GITHUB_TOKEN: ${{ secrets.BALLERINA_BOT_TOKEN }}
+                    CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
                 run: ./gradlew clean build -PpublishToCentral=true
