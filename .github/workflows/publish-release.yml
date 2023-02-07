@@ -70,6 +70,7 @@ jobs:
                     packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
                     publishUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
                     publishPAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
+                    CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
                 run: |
                     ./gradlew clean release -Prelease.useAutomaticVersion=true
                     ./gradlew -Pversion=${VERSION} publish -x test -PpublishToCentral=true
