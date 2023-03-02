@@ -98,3 +98,13 @@ isolated function testSubscriptionDeletion() returns error? {
 isolated function testTopicDeletion() returns error? {
     check clientEp->deleteTopic(TOPIC_NAME);
 }
+
+@test:AfterGroups {
+    value: ["adminClient"]
+}
+isolated function afterAdminClientTests() returns error? {
+    boolean topicExitsts = check clientEp->topicExists(TOPIC_NAME);
+    if topicExitsts {
+        check clientEp->deleteTopic(TOPIC_NAME);
+    }
+}
