@@ -48,7 +48,7 @@ isolated function testTopicCreation() returns error? {
 
 @test:Config {
     groups: ["adminClient"],
-    dependsOn: [testInvalidTopicExists]
+    dependsOn: [testTopicCreation]
 }
 isolated function testValidTopicExists() returns error? {
     boolean topicExists = check clientEp->topicExists(TOPIC_NAME);
