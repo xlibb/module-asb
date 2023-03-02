@@ -18,6 +18,8 @@
 
 package io.xlibb.asb.admin;
 
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.http.HttpResponse;
 import com.azure.messaging.servicebus.administration.ServiceBusAdministrationClient;
 import com.azure.messaging.servicebus.administration.ServiceBusAdministrationClientBuilder;
 import com.azure.messaging.servicebus.administration.models.SubscriptionProperties;
@@ -55,6 +57,25 @@ public final class AsbAdminClientAdaptor {
         return null;
     }
 
+    public static Object topicExists(BObject adminClient, BString topic) {
+        ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
+                .getNativeData(ASB_ADMIN_CLIENT);
+        String topicName = topic.getValue();
+        try {
+            return clientEp.getTopicExists(topicName);
+        } catch (HttpResponseException responseException) {
+            HttpResponse httpResponse = responseException.getResponse();
+            if (404 == httpResponse.getStatusCode()) {
+                return false;
+            }
+            return createError(CLIENT_INVOCATION_ERROR,
+                    String.format("request to identify ASB topic exists %s", topicName), responseException);
+        } catch (Exception e) {
+            return createError(
+                    CLIENT_INVOCATION_ERROR, String.format("request to identify ASB topic exists %s", topicName), e);
+        }
+    }
+
     public static Object createTopic(BObject adminClient, BString topic) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);
@@ -87,6 +108,30 @@ public final class AsbAdminClientAdaptor {
         return null;
     }
 
+    public static Object subscriptionExists(BObject adminClient, BString topic, BString subscription) {
+        ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
+                .getNativeData(ASB_ADMIN_CLIENT);
+        String topicName = topic.getValue();
+        String subscriptionId = subscription.getValue();
+        try {
+            return clientEp.getSubscriptionExists(topicName, subscriptionId);
+        } catch (HttpResponseException responseException) {
+            HttpResponse httpResponse = responseException.getResponse();
+            if (404 == httpResponse.getStatusCode()) {
+                return false;
+            }
+            String message = String.format(
+                    "request to identify ASB subscription exists failed for topic %s and subscriber %s",
+                    topicName, subscriptionId);
+            return createError(CLIENT_INVOCATION_ERROR, message, responseException);
+        } catch (Exception e) {
+            String message = String.format(
+                    "request to identify ASB subscription exists failed for topic %s and subscriber %s",
+                    topicName, subscriptionId);
+            return createError(CLIENT_INVOCATION_ERROR, message, e);
+        }
+    }
+    
     public static Object createSubscription(BObject adminClient, BString topic, BString subscription) {
         ServiceBusAdministrationClient clientEp = (ServiceBusAdministrationClient) adminClient
                 .getNativeData(ASB_ADMIN_CLIENT);

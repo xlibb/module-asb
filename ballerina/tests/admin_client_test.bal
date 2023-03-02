@@ -21,12 +21,23 @@ import ballerina/test;
 configurable string connectionString = os:getEnv("CONNECTION_STRING");
 
 const string TOPIC_NAME = "topic-1";
+const string TOPIC_NAME_2 = "topic-2";
 const string SUBSCRIPTION_NAME = "sub-1";
+const string SUBSCRIPTION_NAME_2 = "sub-2";
 
 final Client clientEp = check new(connectionString);
 
 @test:Config {
     groups: ["adminClient"]
+}
+isolated function testInvalidTopicExists() returns error? {
+    boolean topicExists = check clientEp->topicExists(TOPIC_NAME);
+    test:assertFalse(topicExists);
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testInvalidTopicExists]
 }
 isolated function testTopicCreation() returns error? {
     TopicCreated topicCreated = check clientEp->createTopic(TOPIC_NAME);
@@ -39,6 +50,24 @@ isolated function testTopicCreation() returns error? {
     groups: ["adminClient"],
     dependsOn: [testTopicCreation]
 }
+isolated function testValidTopicExists() returns error? {
+    boolean topicExists = check clientEp->topicExists(TOPIC_NAME);
+    test:assertTrue(topicExists);
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testValidTopicExists]
+}
+isolated function testInvalidSubscriptionExists() returns error? {
+    boolean subscriptionExists = check clientEp->subscriptionExists(TOPIC_NAME, SUBSCRIPTION_NAME);
+    test:assertFalse(subscriptionExists);
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testInvalidSubscriptionExists]
+}
 isolated function testSubscriptionCreation() returns error? {
     SubscriptionCreated subscriptionCreated = check clientEp->createSubscription(TOPIC_NAME, SUBSCRIPTION_NAME);
     io:println(subscriptionCreated);
@@ -48,6 +77,15 @@ isolated function testSubscriptionCreation() returns error? {
 @test:Config {
     groups: ["adminClient"],
     dependsOn: [testSubscriptionCreation]
+}
+isolated function testValidSubscriptionExists() returns error? {
+    boolean subscriptionExists = check clientEp->subscriptionExists(TOPIC_NAME, SUBSCRIPTION_NAME);
+    test:assertTrue(subscriptionExists);
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testValidSubscriptionExists]
 }
 isolated function testSubscriptionDeletion() returns error? {
     check clientEp->deleteSubscription(TOPIC_NAME, SUBSCRIPTION_NAME);
@@ -59,4 +97,14 @@ isolated function testSubscriptionDeletion() returns error? {
 }
 isolated function testTopicDeletion() returns error? {
     check clientEp->deleteTopic(TOPIC_NAME);
+}
+
+@test:AfterGroups {
+    value: ["adminClient"]
+}
+isolated function afterAdminClientTests() returns error? {
+    boolean topicExitsts = check clientEp->topicExists(TOPIC_NAME);
+    if topicExitsts {
+        check clientEp->deleteTopic(TOPIC_NAME);
+    }
 }
