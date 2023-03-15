@@ -1,7 +1,7 @@
 [package]
 org = "xlibb"
 name = "asb.admin"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["xlibb"]
 keywords = ["asb"]
 repository = "https://github.com/xlibb/module-asb"
@@ -12,8 +12,8 @@ icon = "icon.png"
 [[platform.java11.dependency]]
 groupId = "io.xlibb"
 artifactId = "asb.admin-native"
-version = "0.1.1"
-path = "../native/build/libs/asb.admin-native-0.1.1.jar"
+version = "0.1.2"
+path = "../native/build/libs/asb.admin-native-0.1.2-SNAPSHOT.jar"
 
 # Azure dependencies
 [[platform.java11.dependency]]

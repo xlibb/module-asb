@@ -14,7 +14,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
-public type Error distinct error;
+public type ErrorDetails record {|
+    int statusCode;
+|};
+
+public type Error distinct error<ErrorDetails>;
 
 public type ClientInitializationError distinct Error;
 public type ClientInvocationError distinct Error;

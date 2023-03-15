@@ -50,6 +50,20 @@ isolated function testTopicCreation() returns error? {
     groups: ["adminClient"],
     dependsOn: [testTopicCreation]
 }
+isolated function recreateTopic() returns error? {
+    TopicCreated|error topicCreated = clientEp->createTopic(TOPIC_NAME);
+    if topicCreated is Error {
+        ErrorDetails err = topicCreated.detail();
+        test:assertEquals(err.statusCode, 409, "Unexpected HTTP response");
+    } else {
+        test:assertFail("Unexpected response received");
+    }
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testTopicCreation]
+}
 isolated function testValidTopicExists() returns error? {
     boolean topicExists = check clientEp->topicExists(TOPIC_NAME);
     test:assertTrue(topicExists);
@@ -72,6 +86,20 @@ isolated function testSubscriptionCreation() returns error? {
     SubscriptionCreated subscriptionCreated = check clientEp->createSubscription(TOPIC_NAME, SUBSCRIPTION_NAME);
     io:println(subscriptionCreated);
     test:assertEquals(subscriptionCreated.status, "Active");
+}
+
+@test:Config {
+    groups: ["adminClient"],
+    dependsOn: [testSubscriptionCreation]
+}
+isolated function recreateSubscription() returns error? {
+    SubscriptionCreated|error subscriptionCreated = clientEp->createSubscription(TOPIC_NAME, SUBSCRIPTION_NAME);
+    if subscriptionCreated is Error {
+        ErrorDetails err = subscriptionCreated.detail();
+        test:assertEquals(err.statusCode, 409, "Unexpected HTTP response");
+    } else {
+        test:assertFail("Unexpected response received");
+    }
 }
 
 @test:Config {

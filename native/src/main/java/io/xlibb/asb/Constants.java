@@ -35,6 +35,10 @@ public interface Constants {
     String CLIENT_INITIALIZATION_ERROR = "ClientInitializationError";
     String CLIENT_INVOCATION_ERROR = "ClientInvocationError";
 
+    // General error statusCodes for ASB packages
+    int CLIENT_INITIALIZATION_ERROR_CODE = 10000;
+    int CLIENT_INVOCATION_ERROR_CODE = 10001;
+
     // Record names for ASB package
     String TOPIC_CREATED_RECORD = "TopicCreated";
     String SUBSCRIPTION_CREATED_RECORD = "SubscriptionCreated";
