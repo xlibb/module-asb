@@ -18,10 +18,18 @@
 
 package io.xlibb.asb;
 
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.http.HttpResponse;
 import io.ballerina.runtime.api.creators.ErrorCreator;
+import io.ballerina.runtime.api.creators.ValueCreator;
 import io.ballerina.runtime.api.values.BError;
+import io.ballerina.runtime.api.values.BMap;
+import io.ballerina.runtime.api.values.BString;
+
+import java.util.Map;
 
 import static io.ballerina.runtime.api.utils.StringUtils.fromString;
+import static io.xlibb.asb.Constants.CLIENT_INITIALIZATION_ERROR;
 import static io.xlibb.asb.ModuleUtils.getModule;
 
 /**
@@ -30,6 +38,22 @@ import static io.xlibb.asb.ModuleUtils.getModule;
 public final class CommonUtils {
     public static BError createError(String errorType, String message, Throwable throwable) {
         BError cause = ErrorCreator.createError(throwable);
-        return ErrorCreator.createError(getModule(), errorType, fromString(message), cause, null);
+        BMap<BString, Object> errorDetails = getErrorDetails(errorType, throwable);
+        return ErrorCreator.createError(getModule(), errorType, fromString(message), cause, errorDetails);
+    }
+
+    private static BMap<BString, Object> getErrorDetails(String errorType, Throwable throwable) {
+        if (CLIENT_INITIALIZATION_ERROR.equals(errorType)) {
+            return ValueCreator.createRecordValue(getModule(), "ErrorDetails",
+                    Map.of("statusCode", 10000));
+        }
+        if (throwable instanceof HttpResponseException) {
+            HttpResponse httpResponse = ((HttpResponseException) throwable).getResponse();
+            int statusCode = httpResponse.getStatusCode();
+            return ValueCreator.createRecordValue(getModule(), "ErrorDetails",
+                            Map.of("statusCode", statusCode));
+        }
+        return ValueCreator.createRecordValue(getModule(), "ErrorDetails",
+                Map.of("statusCode", 10001));
     }
 }
