@@ -30,6 +30,8 @@ import java.util.Map;
 
 import static io.ballerina.runtime.api.utils.StringUtils.fromString;
 import static io.xlibb.asb.Constants.CLIENT_INITIALIZATION_ERROR;
+import static io.xlibb.asb.Constants.CLIENT_INITIALIZATION_ERROR_CODE;
+import static io.xlibb.asb.Constants.CLIENT_INVOCATION_ERROR_CODE;
 import static io.xlibb.asb.ModuleUtils.getModule;
 
 /**
@@ -45,7 +47,7 @@ public final class CommonUtils {
     private static BMap<BString, Object> getErrorDetails(String errorType, Throwable throwable) {
         if (CLIENT_INITIALIZATION_ERROR.equals(errorType)) {
             return ValueCreator.createRecordValue(getModule(), "ErrorDetails",
-                    Map.of("statusCode", 10000));
+                    Map.of("statusCode", CLIENT_INITIALIZATION_ERROR_CODE));
         }
         if (throwable instanceof HttpResponseException) {
             HttpResponse httpResponse = ((HttpResponseException) throwable).getResponse();
@@ -54,6 +56,6 @@ public final class CommonUtils {
                             Map.of("statusCode", statusCode));
         }
         return ValueCreator.createRecordValue(getModule(), "ErrorDetails",
-                Map.of("statusCode", 10001));
+                Map.of("statusCode", CLIENT_INVOCATION_ERROR_CODE));
     }
 }
