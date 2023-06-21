@@ -6,7 +6,7 @@
 
 [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) is a robust cloud-based 
 Messaging as a Service (MaaS) offering. It serves as an enterprise message broker, providing both message queues and 
-publish-subscribe topics. The service bus plays a vital role in decoupling applications and services from one another. 
+publish/subscribe topics. The service bus plays a vital role in decoupling applications and services from one another. 
 Messages are utilized for seamless data transfer between different applications and services.
 
 The Ballerina Admin client connector for Azure Service Bus facilitates connectivity to Azure Service Bus, 
