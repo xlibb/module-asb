@@ -35,10 +35,8 @@ the topic as an input to the function.
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     boolean topicExists = check clientEp->topicExists("topic-a");
 }
 ```
@@ -52,10 +50,8 @@ input to the function.
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     admin:TopicCreated topicCreated = check clientEp->createTopic("topic-a");
 }
 ```
@@ -70,10 +66,8 @@ the topic as an input to the function.
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     check clientEp->deleteTopic("topic-a");
 }
 ```
@@ -88,10 +82,8 @@ name of the topic and the name of the subscription as inputs to the function.
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     boolean subscriptionExists = check clientEp->subscriptionExists("topic-a", "subscription-1");
 }
 ```
@@ -105,10 +97,8 @@ name of the topic and the name of the subscription as inputs to the function.
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     admin:SubscriptionCreated subscriptionCreated = check clientEp->createSubscription("topic-a", "subscription-1");
 }
 ```
@@ -123,10 +113,8 @@ to provide the name of the topic and the name of the subscription as inputs to t
 ```ballerina
 import xlibb/asb.admin as admin;
 
-configurable string connectionString = ?;
-
 public function main() returns error? {
-    admin:Client clientEp = check new(connectionString);
+    // ...
     check clientEp->deleteSubscription("topic-a", "subscription-1");
 }
 ```
