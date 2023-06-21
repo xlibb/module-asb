@@ -1,5 +1,17 @@
 # Ballerina ASB Library
 
+[![Build](https://github.com/xlibb/module-asb/actions/workflows/build-timestamped-master.yml/badge.svg)](https://github.com/xlibb/module-asb/actions/workflows/build-timestamped-master.yml)
+[![codecov](https://codecov.io/gh/xlibb/module-asb/branch/master/graph/badge.svg)](https://codecov.io/gh/xlibb/module-asb)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/xlibb/module-asb.svg)](https://github.com/xlibb/module-asb/commits/master)
+
+[Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) is a robust cloud-based 
+Messaging as a Service (MaaS) offering. It serves as an enterprise message broker, providing both message queues and 
+publish-subscribe topics. The service bus plays a vital role in decoupling applications and services from one another. 
+Messages are utilized for seamless data transfer between different applications and services.
+
+The Ballerina Admin client connector for Azure Service Bus facilitates connectivity to Azure Service Bus, 
+enabling the creation and deletion of Azure Service Bus topics and subscriptions.
+
 ## Build from the source
 
 ### Set up the prerequisites
