@@ -26,7 +26,9 @@ import xlibb/asb.admin as admin;
 
 configurable string connectionString = ?;
 
-final admin:Client clientEp = check new(connectionString);
+public function main() returns error? {
+    admin:Client clientEp = check new(connectionString);
+}
 ```
 
 Following APIs are available in the Azure service bus admin client:
@@ -42,8 +44,6 @@ Following APIs are available in the Azure service bus admin client:
 This method checks whether the given topic is available in the service bus namespace. User has to provide the name of
 the topic as an input to the function.
 ```ballerina
-import xlibb/asb.admin as admin;
-
 public function main() returns error? {
     // ...
     boolean topicExists = check clientEp->topicExists("topic-a");
@@ -73,8 +73,6 @@ it will result in an `asb.admin:Error`.
 This method deletes an already existing topic from the Azure service bus namespace. User has to provide the name of
 the topic as an input to the function.
 ```ballerina
-import xlibb/asb.admin as admin;
-
 public function main() returns error? {
     // ...
     check clientEp->deleteTopic("topic-a");
@@ -89,8 +87,6 @@ it will result in an `asb.admin:Error`.
 This method checks whether the given subscription is available in the service bus namespace. User has to provide the
 name of the topic and the name of the subscription as inputs to the function.
 ```ballerina
-import xlibb/asb.admin as admin;
-
 public function main() returns error? {
     // ...
     boolean subscriptionExists = check clientEp->subscriptionExists("topic-a", "subscription-1");
@@ -120,8 +116,6 @@ it will result in an `asb.admin:Error`.
 This method deletes an already existing subscription for a given topic from the Azure service bus namespace. User has
 to provide the name of the topic and the name of the subscription as inputs to the function.
 ```ballerina
-import xlibb/asb.admin as admin;
-
 public function main() returns error? {
     // ...
     check clientEp->deleteSubscription("topic-a", "subscription-1");
