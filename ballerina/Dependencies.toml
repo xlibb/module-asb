@@ -75,7 +75,7 @@ modules = [
 [[package]]
 org = "xlibb"
 name = "asb.admin"
-version = "0.1.4"
+version = "0.2.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
 	{org = "ballerina", name = "jballerina.java"},
