@@ -83,6 +83,9 @@ dependencies {
     externalJars(group: 'com.microsoft.azure', name: 'qpid-proton-j-extensions', version: "${azureQpidProtonJExVersion}") {
         transitive = false
     }
+    externalJars(group: 'com.azure', name: 'azure-json', version: "${azureJsonVersion}") {
+        transitive = false
+    }
     
     /* Jackson dependencies */
     externalJars(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "${jacksonVersion}") {
@@ -196,6 +199,7 @@ task updateTomlFiles {
         def stdlibDependentAzureCoreAmqpVersion = project.azureCoreAmqpVersion
         def stdlibDependentAzureCoreHttpNettyVersion = project.azureCoreHttpNettyVersion
         def stdlibDependentAzureQpidProtonJExVersion = project.azureQpidProtonJExVersion
+        def stdlibDependentAzureJsonVersion = project.azureJsonVersion
         def stdlibDependentJacksonVersion = project.jacksonVersion
         def stdlibDependentJacksonDatabindVersion = project.jacksonDatabindVersion
         def stdlibDependentNettyVersion = project.nettyVersion
@@ -211,6 +215,7 @@ task updateTomlFiles {
         newConfig = newConfig.replace("@azure.core.amqp.version@", stdlibDependentAzureCoreAmqpVersion)
         newConfig = newConfig.replace("@azure.core.http.netty.version@", stdlibDependentAzureCoreHttpNettyVersion)
         newConfig = newConfig.replace("@azure.qpid.protonj.version@", stdlibDependentAzureQpidProtonJExVersion)
+        newConfig = newConfig.replace("@azure.json.version@", stdlibDependentAzureJsonVersion)
         newConfig = newConfig.replace("@jackson.version@", jacksonVersion)
         newConfig = newConfig.replace("@jackson.databind.version@", stdlibDependentJacksonDatabindVersion)
         newConfig = newConfig.replace("@netty.version@", nettyVersion)
