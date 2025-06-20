@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2023, WSO2 LLC. (http://www.wso2.org) All Rights Reserved.
  *
- * WSO2 LLC. licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,17 +14,17 @@
  * limitations under the License.
  *
  */
- 
+
 plugins {
     id "de.undercouch.download"
 }
 
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 task downloadCheckstyleRuleFiles(type: Download) {
     src([
-            'https://raw.githubusercontent.com/wso2/code-quality-tools/v1.3/checkstyle/checkstyle.xml',
-            'https://raw.githubusercontent.com/wso2/code-quality-tools/v1.3/checkstyle/suppressions.xml'
+            'https://raw.githubusercontent.com/wso2/code-quality-tools/v1.4/checkstyle/jdk-17/checkstyle.xml',
+            'https://raw.githubusercontent.com/wso2/code-quality-tools/v1.4/checkstyle/jdk-17/suppressions.xml'
     ])
     overwrite false
     onlyIfNewer true
