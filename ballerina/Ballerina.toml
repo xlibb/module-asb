@@ -41,6 +41,12 @@ version = "1.13.6"
 path = "./lib/azure-core-http-netty-1.13.6.jar"
 
 [[platform.java11.dependency]]
+groupId = "com.azure"
+artifactId = "azure-json"
+version = "1.0.1"
+path = "./lib/azure-json-1.0.1.jar"
+
+[[platform.java11.dependency]]
 groupId = "com.microsoft.azure"
 artifactId = "qpid-proton-j-extensions"
 version = "1.2.4"
