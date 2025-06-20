@@ -32,13 +32,29 @@ jobs:
                 run: mkdir -p ballerina/lib
             
             -   name: Check lib directory contents
-                run: ls -la ballerina/lib
+                run: |
+                    cd ballerina/lib
+                    pwd
+
+            # -   name: Run Trivy vulnerability scanner
+            #     uses: aquasecurity/trivy-action@master
+            #     with:
+            #         scan-type: "rootfs"
+            #         scan-ref: "/github/workspace/ballerina/lib"
+            #         format: "table"
+            #         timeout: "10m0s"
+            #         exit-code: "1"
 
             -   name: Run Trivy vulnerability scanner
                 uses: aquasecurity/trivy-action@master
+                env:
+                    TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db,public.ecr.aws/aquasecurity/trivy-db
+                    TRIVY_JAVA_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-java-db,public.ecr.aws/aquasecurity/trivy-java-db
                 with:
                     scan-type: "rootfs"
-                    scan-ref: "/github/workspace/ballerina/lib"
+                    scan-ref: "${{ github.workspace }}/ballerina/lib"
                     format: "table"
                     timeout: "10m0s"
                     exit-code: "1"
+                    scanners: "vuln"
+                    cache-dir: "/tmp/trivy-cache"
