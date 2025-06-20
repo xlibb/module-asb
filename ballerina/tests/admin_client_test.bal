@@ -20,10 +20,10 @@ import ballerina/test;
 
 configurable string connectionString = os:getEnv("CONNECTION_STRING");
 
-const string TOPIC_NAME = "topic-1";
-const string TOPIC_NAME_2 = "topic-2";
-const string SUBSCRIPTION_NAME = "sub-1";
-const string SUBSCRIPTION_NAME_2 = "sub-2";
+const string TOPIC_NAME = "xlibb-topic-1";
+const string TOPIC_NAME_2 = "xlibb-topic-2";
+const string SUBSCRIPTION_NAME = "xlibb-sub-1";
+const string SUBSCRIPTION_NAME_2 = "xlibb-sub-2";
 
 final Client clientEp = check new(connectionString);
 
